@@ -12,9 +12,7 @@ public class Scanner {
      * We store the raw source code as a simple String
      * and we have a list ready to fill
      * with tokens we're going to generate
-     */
-
-    /**
+     *
      * The start and current fields are offsets that index into the string
      * The start field points to the first character and current points
      * at the character currently being considered
@@ -28,6 +26,13 @@ public class Scanner {
     private int line = 1;
 
     private static final Map<String, TokenType> keywords;
+
+
+
+    public Scanner(String source) {
+        this.source = source;
+    }
+
     static {
         keywords = new HashMap<>();
         keywords.put("and", TokenType.AND);
@@ -47,11 +52,6 @@ public class Scanner {
         keywords.put("var", TokenType.VAR);
         keywords.put("while",TokenType.WHILE);
     };
-
-
-    public Scanner(String source) {
-        this.source = source;
-    }
     List<Token> scanTokens(){
         while (!isAtEnd()){
             start = current;
@@ -211,7 +211,7 @@ public class Scanner {
         }
         return source.charAt(current);
     }
-    // Consumes the next character in the source file and returns it, where is it for inout;
+    // Consumes the next character in the source file and returns it, where is it for input;
     private char advance(){
         return source.charAt(current++);
     }
